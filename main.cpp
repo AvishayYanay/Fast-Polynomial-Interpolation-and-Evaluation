@@ -3,8 +3,10 @@
 #include <NTL/ZZ.h>
 
 
-#include "tests_zp.h"
-#include "tests_gf2n.h"
+//#include "tests_zp.h"
+//#include "tests_gf2n.h"
+
+#include "zp.h"
 
 #define MERSENNE_13 (8191)  //2^13-1
 #define MERSENNE_31 (2147483647)
@@ -15,12 +17,16 @@ using namespace NTL;
 
 #define LOGN (20)
 
-int main()
+void recursive()
 {
-    test_interpolate_zp(ZZ(MERSENNE_31), pow(2,12)-1);
-    test_interpolate_zp(ZZ(MERSENNE_31), pow(2,13)-1);
-    test_interpolate_zp(ZZ(MERSENNE_61), pow(2,14)-1);
-
+//    long degree = pow(2,20)-1;
+//    ZZ prime;
+//    GenPrime(prime, 400);
+//    cout << "prime: " << prime << endl;
+//    test_multipoint_eval_zp(prime,degree);
+//    GenPrime(prime, 256);
+//    cout << "prime: " << prime << endl;
+//    test_multipoint_eval_zp(prime,degree);
 //    for (int i=10; i<=LOGN; i++) {
 //        long degree = pow(2,i)-1;
 //        cout << "*** n=2^" << i << endl;
@@ -35,12 +41,31 @@ int main()
 //    }
 
 
+//    for (int i=10; i<=LOGN; i++) {
+//        long degree = pow(2,i)-1;
+//        cout << "*** n=2^" << i << endl;
+//        ZZ prime;
+//        GenPrime(prime, 400);
+//        cout << "prime: " << prime << endl;
+//
+//        test_interpolate_zp(prime, degree);
+//    }
+}
+
+int main() {
+    ZZ prime;
+    GenPrime(prime, 100);
+    cout << "prime: " << prime << endl;
+
+//    for (int i=10; i<=LOGN; i++) {
+//        long degree = pow(2,i)-1;
+//        cout << "*** n=2^" << i << endl;
+//        test_multipoint_eval_zp(ZZ(MERSENNE_61),degree);
+//    }
+
     for (int i=10; i<=LOGN; i++) {
         long degree = pow(2,i)-1;
         cout << "*** n=2^" << i << endl;
-        ZZ prime;
-        GenPrime(prime, 100);
-
-        test_interpolate_zp(prime, degree);
+        test_interpolate_zp(ZZ(MERSENNE_61),degree);
     }
 }
